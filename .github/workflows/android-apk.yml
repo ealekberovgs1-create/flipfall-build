@@ -37,10 +37,10 @@ jobs:
           test -f project/apk/android/gradlew
       - name: Install dependencies
         working-directory: project
-        run: npm ci
+        run: npm install
       - name: Install Capacitor
         working-directory: project/apk
-        run: npm ci
+        run: npm install
       - name: Build web game
         working-directory: project
         run: npx vite build --config vite.apk.config.ts
