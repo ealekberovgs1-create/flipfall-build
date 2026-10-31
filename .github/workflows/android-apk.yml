@@ -80,6 +80,22 @@ jobs:
           chmod +x gradlew
           ./gradlew --no-daemon assembleDebug
 
+      - name: Package project ZIP
+        run: |
+          zip -qr FLIPFALL-project.zip project \
+            -x '*/node_modules/*' \
+               '*/.gradle/*' \
+               '*/build/*' \
+               '*/local.properties'
+
+      - name: Upload project ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: FLIPFALL-PROJECT
+          path: FLIPFALL-project.zip
+          retention-days: 14
+          
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
