@@ -47,6 +47,12 @@ jobs:
       - name: Sync Android
         working-directory: project/apk
         run: npx cap sync android
+      - name: Remove invalid Java home
+        working-directory: project/apk/android
+        run: |
+          if [ -f gradle.properties ]; then
+            sed -i '/^org\.gradle\.java\.home=/d' gradle.properties
+          fi
       - name: Build APK
         working-directory: project/apk/android
         run: |
